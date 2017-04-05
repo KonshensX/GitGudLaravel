@@ -14,7 +14,6 @@ class PostController extends Controller
     public function index () {
 
         $posts = Post::limit(30)->get();
-
         return view('post.index', compact('posts'));
     }
 
@@ -26,5 +25,18 @@ class PostController extends Controller
         //dd(Auth::user()->id);
         $post = Post::create(['content' => Input::get('content'), 'user_id' => Auth::user()->id]);
         return redirect()->route('post.index');
+    }
+
+    /**
+     * Display a post in a separate view
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function full(Request $request, $id) {
+        return view ('post.full', [
+            'post' => Post::where('id', $id)->first()
+        ]);
     }
 }

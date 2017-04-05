@@ -3,7 +3,7 @@ Upload profile picture and store it in the harddisk (public folder) and update t
 Dispay the profile picture in the dislay page .
 Display the profile information in the navbar in layout.app => DOING.
 Implement the search funtionality => DOING.
- - The search is sone using the fullname for now.
+ - The search is gone be using the fullname for now.
  - The search results should be in an order by fuck am i even writing here.
 Display a user profile and the the following data:
 -> The user profile informations .
@@ -14,4 +14,15 @@ Always check for permissions, Check if the user is who claims to be .
 
 
 //4/5/2017
-Check
+Users should be able to like posts and comment and them
+Likes :
+Table must have: id, user_id, post_id, timestamps.
+Create the migration and the model .
+Create the routes for the like and unlike functionalities along with the links to use them.
+The like and unlike are working nice.
+
+Comments :
+Table must have: id, comment, user_id, post_id, timestamps.
+Create the migration and the model .
+Create the routes for commenting and deleting the comment.
+This is working perfectly fine .

@@ -12,7 +12,7 @@
                 <i class="fa-plus icon"></i>
                 Post
             </button>
-
+            {!! Form::close() !!}
         </div>
     </div>
     @foreach($posts as $post)
@@ -31,11 +31,21 @@
             </div>
         </div>
         <div class="ui bottom attached segment" style="overflow: hidden;">
+            <a href="{{ route('post.full', ['id' => $post->id]) }}" class="">
+                <i class="fa fa-clock-o"></i>
+                 {{ $post->created_at->diffForHumans() }}
+            </a>
             <div class="right floated" style="float: right;">
-                <div class="red">
-                    <i class="text red fa fa-heart" style="color: red;"></i> 220
-                    <i class="fa fa-comment blue" style="color: grey"></i> 44
-                </div>
+
+                {!! Form::open(['url' => route('like.like')]) !!}
+                    {!! Form::hidden('id', $post->id) !!}
+                    <button type="submit" class="ui red button mini">
+                        <i class="fa fa-heart"></i> {{ $post->likes()->count() }}
+                    </button>
+                {!! Form::close() !!}
+                <button type="submit" class="ui grey button mini">
+                    <i class="fa fa-comment"></i> 44
+                </button>
             </div>
         </div>
 
