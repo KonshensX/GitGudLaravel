@@ -11,6 +11,6 @@ class Profile extends Model
 
     //Get the user of the profile 
     public function user () {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 }

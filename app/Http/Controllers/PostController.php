@@ -13,7 +13,8 @@ class PostController extends Controller
 
     public function index () {
 
-        $posts = Post::get();
+        $posts = Post::limit(30)->get();
+
         return view('post.index', compact('posts'));
     }
 
@@ -24,6 +25,6 @@ class PostController extends Controller
     public function store (Request $request) {
         //dd(Auth::user()->id);
         $post = Post::create(['content' => Input::get('content'), 'user_id' => Auth::user()->id]);
-        dd($request->request);
+        return redirect()->route('post.index');
     }
 }

@@ -11,15 +11,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ URL::asset('/css/semantic.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('/css/semantic.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('/css/font-awesome.css') }}" type="text/css">
 
     <!-- Scripts -->
-
+    <script src="{{ URL::asset('js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/semantic.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/dimmer.js') }}" type="text/javascript"></script>
 </head>
 <body>
     <div class="ui menu">
-        <div class="header item">Brand</div>
-        <div class="active item">Link</div>
+        <div class="header item">
+            <i class="fa fa-twitter fa-2x"></i>
+        </div>
         <a class="item">Link</a>
         <div class="ui dropdown item" tabindex="0">
             Dropdown
@@ -34,27 +38,39 @@
             <div class="item">
                 <div class="ui transparent icon input">
                     <i class="search icon"></i>
-                    <input type="text" placeholder="Search">
+                    {!! Form::open(['url' => route('profile.search')]) !!}
+                        {!! Form::text('search_value', null, ['placeholder' => 'Search ....']) !!}
+                    {!! Form::close() !!}
                 </div>
+            </div>
+            <div class="item">
+                <a href="{{ route('profile.display') }}">
+                    <i class="fa fa-user-circle"></i>
+                     {{ Auth::user()->email }}
+                </a>
             </div>
             <div class="ui icon">
                 <a class="item">
                     {!! Form::open(['url' => route('logout')]) !!}
-                    <i class="out icon"></i>
-                    <button type="submit">Logout</button>
+
+                    <button type="submit" class="ui button blue small icon">
+                        <i class="fa-sign-out icon"></i>
+                        Logout
+                    </button>
                     {!! Form::close() !!}
                 </a>
             </div>
             @else
                 <div class="ui icon">
-                    <a class="item">
-                        <i class="clock icon"></i>
+                    <a class="item" href="{{ route('login') }}">
+                        <i class="fa fa-sign-in"></i>
                         Login
                     </a>
                 </div>
+
                 <div class="ui icon">
-                    <a class="item">
-                        <i class="registered icon"></i>
+                    <a class="item" href="{{ route('register') }}">
+                        <i class="fa fa-sign-out"></i>
                         Register
                     </a>
                 </div>
@@ -62,11 +78,26 @@
         </div>
     </div>
     <div class="ui container">
-        @yield('content')
+        <div class="ui grid">
+            <div class="row">
+                <div class="three wide column">
+                    <h5 class="ui top attached red header">
+                        Trending #
+                    </h5>
+                    <div class="ui bottom attached segment">
+                        <ul>
+                            <li>#fucl</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="eleven wide column">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
-    <script src="{{ URL::asset('js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/semantic.min.js') }}" type="text/javascript"></script>
+
 </body>
 </html>

@@ -1,0 +1,17 @@
+LARAVEL TODO::
+Upload profile picture and store it in the harddisk (public folder) and update the database (avatar_name).
+Dispay the profile picture in the dislay page .
+Display the profile information in the navbar in layout.app => DOING.
+Implement the search funtionality => DOING.
+ - The search is sone using the fullname for now.
+ - The search results should be in an order by fuck am i even writing here.
+Display a user profile and the the following data:
+-> The user profile informations .
+->user posts and likes (and activity) .
+
+Link all the urls and stuff everything is a mess right now .
+Always check for permissions, Check if the user is who claims to be .
+
+
+//4/5/2017
+Check
