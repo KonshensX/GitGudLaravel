@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/post', 'PostController@index');
 
-Route::get('/post/add', 'PostController@add');
-
-Route::post('/post/add', 'PostController@store');
+Route::group(['prefix' => 'post', 'using' => 'PostController'], function () {
+    Route::post('store', 'PostController@store')->name('post.store');
+    Route::get('add', 'PostController@add')->name('post.add');
+});

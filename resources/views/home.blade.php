@@ -2,15 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
+    <h5 class="ui top attached inverted header">What's on your mind...</h5>
+    <div class="ui bottom attached segment">
+        <div class="ui form">
+            {!! Form::open(['url' => route('post.store')]) !!}
+            <div class="field">
+                {!! Form::textarea('content', null, ['rows' => 2]) !!}
             </div>
+
+            <button class="ui right primary labeled icon button">
+                <i class="add icon"></i>
+                Send
+            </button>
+
         </div>
     </div>
 </div>

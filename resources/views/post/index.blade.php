@@ -25,7 +25,7 @@
         </div>
         <div class="extra content">
             <a>
-                <i class="users icon"></i>
+                <i class="time icon"></i>
                 {{ $post->created_at->diffForHumans() }}
             </a>
         </div>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -72,5 +71,33 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="ui form">
+
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+            {{ csrf_field() }}
+            <div class="ui field">
+                <label>Username</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+            </div>
+
+            <div class="ui field">
+                <label>Email</label>
+                <input id="email" type="text" name="email" value="{{ old('email') }}" required autofocus>
+            </div>
+
+            <div class="ui field">
+                <label>Password</label>
+                <input id="password" type="password" name="password" value="{{ old('password') }}" required autofocus>
+            </div>
+
+            <div class="ui field">
+                <label>Password Confirmation</label>
+                <input id="password-confirm" type="password" name="password-confirm"
+                       value="{{ old('password-confirm') }}" required autofocus>
+            </div>
+            <div class="ui right">
+                <button type="submit" class="ui primary button">Register</button>
+            </div>
+        </form>
+    </div>
 @endsection

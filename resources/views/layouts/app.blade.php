@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    <div class="ui inverted menu">
+    <div class="ui menu">
         <div class="header item">Brand</div>
         <div class="active item">Link</div>
         <a class="item">Link</a>
@@ -27,21 +27,38 @@
             <div class="menu" tabindex="-1">
                 <div class="item">Action</div>
                 <div class="item">Another Action</div>
-                <div class="item">Something else here</div>
-                <div class="divider"></div>
-                <div class="item">Separated Link</div>
-                <div class="divider"></div>
-                <div class="item">One more separated link</div>
             </div>
         </div>
         <div class="right menu">
+            @if (Auth::user())
             <div class="item">
-                <div class="ui transparent inverted icon input">
+                <div class="ui transparent icon input">
                     <i class="search icon"></i>
                     <input type="text" placeholder="Search">
                 </div>
             </div>
-            <a class="item">Link</a>
+            <div class="ui icon">
+                <a class="item">
+                    {!! Form::open(['url' => route('logout')]) !!}
+                    <i class="out icon"></i>
+                    <button type="submit">Logout</button>
+                    {!! Form::close() !!}
+                </a>
+            </div>
+            @else
+                <div class="ui icon">
+                    <a class="item">
+                        <i class="clock icon"></i>
+                        Login
+                    </a>
+                </div>
+                <div class="ui icon">
+                    <a class="item">
+                        <i class="registered icon"></i>
+                        Register
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
     <div class="ui container">
