@@ -17,12 +17,15 @@
     <!-- Scripts -->
     <script src="{{ URL::asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('js/semantic.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/dimmer.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/angular.min.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('client/AngularApp.js') }}" type="text/javascript"></script>
 </head>
-<body>
+<body ng-app="clone">
     <div class="ui menu">
         <div class="header item">
-            <i class="fa fa-twitter fa-2x"></i>
+            <a href="{{ route('post.index') }}">
+                <i class="fa fa-twitter fa-2x"></i>
+            </a>
         </div>
         <a class="item">Link</a>
         <div class="ui dropdown item" tabindex="0">
@@ -98,6 +101,7 @@
     </div>
 
     <!-- Scripts -->
+    @yield('js')
 
 </body>
 </html>

@@ -13,7 +13,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="{{ URL::asset('uploads/avatar') . '/' . $profile->avatar_name }}">
+                        <img src="{{ $profile->avatarUrl }}">
                     </div>
                     <div class="content">
                         <a class="header">

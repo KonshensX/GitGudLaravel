@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\URL;
 
 class User extends Authenticatable
 {
@@ -16,6 +17,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+    ];
+
+    protected $appends = [
+        'avatarUrl',
     ];
 
     /**
@@ -31,12 +36,18 @@ class User extends Authenticatable
         $this->hasMany(Post::class);
     }
 
-    //Get the user profile here 
-    public function profile () {
-        return $this->belongsTo(Profile::class);
-    }
-
     public function comments () {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Gets the avatar for the user
+     * @return mixed
+     */
+    public function getAvatarUrlAttribute () {
+        if ($this->avatar_name) {
+            return URL::asset("uploads/avatar/$this->avatar_name");
+        }
+        return URL::asset("img/profilepic.png");
     }
 }

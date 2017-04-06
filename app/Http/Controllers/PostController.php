@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
 class PostController extends Controller
 {
@@ -39,4 +40,11 @@ class PostController extends Controller
             'post' => Post::where('id', $id)->first()
         ]);
     }
+
+
+    public function getPosts() {
+        //simulating a delay
+        return Response::json($posts = Post::limit(30)->get());
+    }
 }
+

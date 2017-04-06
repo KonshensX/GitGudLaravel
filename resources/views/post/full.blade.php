@@ -22,27 +22,42 @@
     <div class="ui bottom attached segment">
         {{ $post->content }}
         <hr>
-        <h3>Comments: </h3>
-        @foreach($post->comments() as $comment)
-            <div class="ui bottom attached segments">
-                {{ $comment->user->name }}
-                {!! Form::open(['url' => route('comment.remove')]) !!}
-                    {!! Form::hidden('id', $comment->id) !!}
-                <div class="right floated">
-                    <button type="submit" class="ui button icon mini">
-                        <i class="fa fa-close"></i>
-                    </button>
-                </div>
-                {!! Form::close() !!}
-                <br>
-                {{ $comment->comment }}
-                <br>
-                <i class="fa fa-clock-o"></i>
-                {{ $comment->created_at->diffForHumans() }}
-            </div>
-        @endforeach
     </div>
+    <h3>Comments: {{ $post->comments()->count() }}</h3>
+    <hr>
+        <div class="ui comments">
+        @foreach($post->comments() as $comment)
+        <div class="comment">
+            <div class="avatar">
+                <img src=" {{ URL::asset('img/man.jpg') }}" alt="">
+            </div>
+            <div class="content">
+                <span class="author">
+                    {{ $comment->user->fullname }}
 
+                    {!! Form::open(['url' => route('comment.remove')]) !!}
+                    {!! Form::hidden('id', $comment->id) !!}
+                    <div class="right floated">
+                        <button type="submit" class="ui button icon mini">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                    {!! Form::close() !!}
+                </span>
+                <div class="metadata">
+                    <span class="date">
+                        {{ $comment->created_at->diffForHumans() }}
+                    </span>
+                </div>
+                <div class="text">
+                    {{ $comment->comment }}
+                </div>
+                <div class="actions">
+                </div>
+            </div>
+        </div>
+            @endforeach
+    </div>
     <div class="ui form">
         <h3>Comment:</h3>
         {!! Form::open(['url' => route('comment.create')]) !!}

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostController@index');
+Route::get('/', 'PostController@index')->name('post.index');
 
 Auth::routes();
 
@@ -22,6 +22,7 @@ Route::group(['prefix' => 'post', 'using' => 'PostController'], function () {
     Route::post('store', 'PostController@store')->name('post.store');
     Route::get('add', 'PostController@add')->name('post.add');
     Route::get('full/{id}', 'PostController@full')->name('post.full');
+    Route::get('getPosts', 'PostController@getPosts')->name('post.getPosts');
 });
 
 

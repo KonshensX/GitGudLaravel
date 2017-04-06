@@ -26,3 +26,18 @@ Table must have: id, comment, user_id, post_id, timestamps.
 Create the migration and the model .
 Create the routes for commenting and deleting the comment.
 This is working perfectly fine .
+
+IDEAS :
+It would be better to have a single user table with all the fields in it instead of having a user and profile entities.
+
+//4/6/2017
+Merging the profile and user tables into one table user
+Create te migration and add fields .
+Delete the Profile model and replace it by User .
+1 - Register controller
+-----Done ------
+Display the user avatar in the comments section and also posts .
+
+Include angular js and shit
+
+Change the like button froma form to a link using angular to toggle status.

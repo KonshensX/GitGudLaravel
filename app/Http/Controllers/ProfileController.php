@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -18,9 +19,9 @@ class ProfileController extends Controller
      */
     public function display () {
         $userid = Auth::user()->id;
-
+        
         return view('profile.display', [
-            'profile' => Profile::where('user_id', $userid)->first(),
+            'profile' => User::where('id', $userid)->first(),
         ]);
     }
 
@@ -47,7 +48,7 @@ class ProfileController extends Controller
 
             //dd($filename);
             //Get the profile and update the avatar name value
-            $profile = Profile::where(['user_id' => Auth::user()->id])->first();
+            $profile = User::where(['id' => Auth::user()->id])->first();
             $profile->avatar_name = $filename;
             $profile->save();
             return redirect()->route('profile.display');
@@ -71,7 +72,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function search (Request $request) {
-        $profiles = Profile::where('fullname', $request->only('search_value'))->get();
+        $profiles = User::where('fullname', $request->only('search_value'))->get();
         return view('profile.search', [
                 'profiles' => $profiles
             ]
@@ -87,7 +88,7 @@ class ProfileController extends Controller
      */
     public function full (Request $request, $id) {
         return view ('profile.full', [
-            'profile' => Profile::find($id)
+            'profile' => User::find($id)
         ]);
     }
 
@@ -98,7 +99,7 @@ class ProfileController extends Controller
      */
     public function update (Request $request) {
         //Getting the profile to update
-        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        $profile = User::where('id', Auth::user()->id)->first();
         $data = $request->only('fullname', 'about', 'location');
         $profile->fullname = $data['fullname'];
         $profile->location = $data['location'];
