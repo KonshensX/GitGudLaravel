@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $fillable = ['content', 'user_id'];
 
-    protected $appends = ['humanDate', 'userInfo', 'likesCount', 'commentsCount'];
+    protected $appends = ['humanDate', 'userInfo', 'likesCount', 'commentsCount', 'liked'];
 
     public function user () {
         return $this->belongsTo(User::class);
@@ -36,5 +36,9 @@ class Post extends Model
 
     public function getCommentsCountAttribute () {
         return $this->comments()->count();
+    }
+
+    public function getLikedAttribute () {
+        //return $this
     }
 }

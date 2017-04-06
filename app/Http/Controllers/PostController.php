@@ -14,7 +14,7 @@ class PostController extends Controller
 
     public function index () {
 
-        $posts = Post::limit(30)->get();
+        $posts = Post::limit(30)->orderBy('created_at', 'DESC')->get();
         return view('post.index', compact('posts'));
     }
 
@@ -44,7 +44,8 @@ class PostController extends Controller
 
     public function getPosts() {
         //simulating a delay
-        return Response::json($posts = Post::limit(30)->get());
+        sleep(2);
+        return Response::json($posts = Post::limit(30)->orderBy('created_at', 'DESC')->get());
     }
 }
 

@@ -1,0 +1,11 @@
+.liked {
+    color: red;
+}
+
+.notliked {
+    color: darkgrey;
+}
+
+.comments {
+    color: #e3e3e3;
+}

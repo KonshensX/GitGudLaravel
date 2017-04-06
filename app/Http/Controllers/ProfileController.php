@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +16,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function display () {
-        $userid = Auth::user()->id;
-        
+    public function display (Request $request, $name) {
         return view('profile.display', [
-            'profile' => User::where('id', $userid)->first(),
+            'profile' => User::where('name', $name)->first(),
         ]);
     }
 
@@ -106,5 +103,13 @@ class ProfileController extends Controller
         $profile->about = $data['about'];
         $profile->save();
         return redirect()->route('profile.display');
+    }
+
+    public function settings () {
+        $userid = Auth::user()->id;
+
+        return view('profile.settings', [
+            'profile' => User::where('id', $userid)->first(),
+        ]);
     }
 }

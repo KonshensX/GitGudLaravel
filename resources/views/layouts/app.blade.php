@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ URL::asset('/css/semantic.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ URL::asset('/css/font-awesome.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('/css/clone.css') }}" type="text/css">
 
     <!-- Scripts -->
     <script src="{{ URL::asset('js/jquery.min.js') }}" type="text/javascript"></script>
@@ -27,15 +28,6 @@
                 <i class="fa fa-twitter fa-2x"></i>
             </a>
         </div>
-        <a class="item">Link</a>
-        <div class="ui dropdown item" tabindex="0">
-            Dropdown
-            <i class="dropdown icon"></i>
-            <div class="menu" tabindex="-1">
-                <div class="item">Action</div>
-                <div class="item">Another Action</div>
-            </div>
-        </div>
         <div class="right menu">
             @if (Auth::user())
             <div class="item">
@@ -46,12 +38,23 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-            <div class="item">
-                <a href="{{ route('profile.display') }}">
-                    <i class="fa fa-user-circle"></i>
-                     {{ Auth::user()->email }}
-                </a>
-            </div>
+
+                <div class="ui dropdown item" tabindex="0">
+                    <img class="ui avatar image" src="{{ Auth::user()->avatarUrl }}">
+                     <span>{{ Auth::user()->fullname }}</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu" tabindex="-1">
+                        <a href="{{ route('profile.display', ['name' => Auth::user()->name ]) }}" class="item">
+                            <i class="user icon"></i>
+                            Profile
+
+                        </a>
+                        <a href="{{ route('profile.settings') }}" class="item">
+                            <i class="cogs icon"></i>
+                            Settings
+                        </a>
+                    </div>
+                </div>
             <div class="ui icon">
                 <a class="item">
                     {!! Form::open(['url' => route('logout')]) !!}
@@ -101,6 +104,17 @@
     </div>
 
     <!-- Scripts -->
+    <script>
+        $(document)
+                .ready(function() {
+                    $('.ui.dropdown')
+                            .dropdown({
+                                on: 'click'
+                            })
+                    ;
+                })
+        ;
+    </script>
     @yield('js')
 
 </body>
