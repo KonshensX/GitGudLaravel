@@ -67,18 +67,21 @@
                 </a>
             </div>
             @else
-                <div class="ui icon">
-                    <a class="item" href="{{ route('login') }}">
-                        <i class="fa fa-sign-in"></i>
-                        Login
-                    </a>
+                <div class="item">
+                    <div class="ui icon">
+                        <a href="{{ route('login') }}">
+                            <i class="fa fa-sign-in"></i>
+                            Login
+                        </a>
+                    </div>
                 </div>
-
-                <div class="ui icon">
-                    <a class="item" href="{{ route('register') }}">
-                        <i class="fa fa-sign-out"></i>
-                        Register
-                    </a>
+                <div class="item">
+                    <div class="ui icon">
+                        <a href="{{ route('register') }}">
+                            <i class="fa fa-sign-out"></i>
+                            Register
+                        </a>
+                    </div>
                 </div>
             @endif
         </div>

@@ -69,7 +69,11 @@ class ProfileController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function search (Request $request) {
-        $profiles = User::where('fullname', $request->only('search_value'))->get();
+        $query = Input::get('search_value');
+        if (!$query) {
+            return redirect()->route('post.index');
+        }
+        $profiles = User::where('fullname', 'like', '%' . $query .'%')->get();
         return view('profile.search', [
                 'profiles' => $profiles
             ]

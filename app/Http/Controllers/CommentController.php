@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class CommentController extends Controller
 {
@@ -29,5 +31,16 @@ class CommentController extends Controller
         return redirect()->route('post.full', [
             'id' => $comment->post()->first()->id
         ]);
+    }
+
+    /**
+     * Get comments for a post
+     * @param $id
+     */
+    public function getPostComments ($id) {
+        sleep(3);
+        $posts = Post::where('id', $id)->first();
+
+        return Response::json($posts->comments());
     }
 }

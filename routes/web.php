@@ -43,4 +43,5 @@ Route::group(['prefix' => 'like'], function () {
 Route::group(['prefix' => 'comment'], function () {
     Route::post('create', 'CommentController@create')->name('comment.create');
     Route::post('remove', 'CommentController@remove')->name('comment.remove');
+    Route::get('getPostComments/{id}', 'CommentController@getPostComments')->name('comment.getPostComments');
 });

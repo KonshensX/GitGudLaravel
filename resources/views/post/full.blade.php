@@ -2,39 +2,48 @@
 
 @section('content')
     <div class="ui top attached header">
-        <div class="ui grid">
+        <div class="ui comment">
             <div class="row">
-                <div class="two wide column">
-                    <img src="{{ URL::asset('img/man.jpg') }}" alt="">
+                <div class="ten wide column">
+                    <input type="hidden" id="id" data-id="{{ $post->id }}">
+                    <img class="ui avatar image" src="{{ $post->user->avatarUrl }}" alt="">
+                    <span>{{ $post->user->name }}</span>
+                    <i class="fa fa-clock-o"></i>
+                    {{ $post->created_at->diffForHumans() }}
                 </div>
+                <!--
                 <div class="eleven wide column">
                     <div class="grey">
                         {{ $post->user->name }}
                          <em>
                              <i class="fa fa-clock-o"></i>
-                             <span>{{ $post->created_at->diffForHumans() }}</span>
+                             <span class="date">{{ $post->created_at->diffForHumans() }}</span>
                          </em>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>
-    <div class="ui bottom attached segment">
+    <div class="ui bottom attached segment" >
         {{ $post->content }}
         <hr>
     </div>
     <h3>Comments: {{ $post->comments()->count() }}</h3>
     <hr>
-        <div class="ui comments">
-        @foreach($post->comments() as $comment)
-        <div class="comment">
+        <div class="ui comments" ng-controller="PostController">
+        <div class="comment" ng-repeat="comment in comments">
+            <div class="ui active inverted dimmer" ng-show="loading">
+                <div class="ui medium text loader">Loading comments...</div>
+            </div>
             <div class="avatar">
-                <img src=" {{ URL::asset('img/man.jpg') }}" alt="">
+
+                <img class="" src=" @{{ comment.user.avatarUrl }}" alt="">
             </div>
             <div class="content">
                 <span class="author">
-                    {{ $comment->user->fullname }}
-
+                    @{{ comment.user.fullname }}
+                    {{--
                     {!! Form::open(['url' => route('comment.remove')]) !!}
                     {!! Form::hidden('id', $comment->id) !!}
                     <div class="right floated">
@@ -43,20 +52,21 @@
                         </button>
                     </div>
                     {!! Form::close() !!}
+                    --}}
                 </span>
                 <div class="metadata">
                     <span class="date">
-                        {{ $comment->created_at->diffForHumans() }}
+                        @{{ comment.humanDate }}
                     </span>
                 </div>
                 <div class="text">
-                    {{ $comment->comment }}
+                    @{{ comment.comment }}
                 </div>
                 <div class="actions">
+                    Delete
                 </div>
             </div>
         </div>
-            @endforeach
     </div>
     <div class="ui form">
         <h3>Comment:</h3>
@@ -71,4 +81,9 @@
             </button>
         {!! Form::close() !!}
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ URL::asset('client/controllers/PostController.js') }}"></script>
+
 @endsection

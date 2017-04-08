@@ -40,4 +40,13 @@ Display the user avatar in the comments section and also posts .
 
 Include angular js and shit
 
-Change the like button froma form to a link using angular to toggle status.
+Change the like button from a form to a link using angular to toggle status => not done yet.
+
+//4/7/2017
+Load the comments using angular js
+
+//4/8/2017
+Add the following functionality
+Create the follow model and migration.
+Think about it for a minute.
+The search is not working properly => doing.

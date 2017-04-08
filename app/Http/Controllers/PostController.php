@@ -42,6 +42,10 @@ class PostController extends Controller
     }
 
 
+    /**
+     * Get the posts in json format
+     * @return mixed
+     */
     public function getPosts() {
         //simulating a delay
         sleep(2);
