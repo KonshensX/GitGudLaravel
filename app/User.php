@@ -40,6 +40,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function following ()  {
+        return $this->hasMany(Following::class);
+    }
+
     /**
      * Gets the avatar for the user
      * @return mixed

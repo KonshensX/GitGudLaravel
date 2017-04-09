@@ -1,52 +1,60 @@
-LARAVEL TODO::
-Upload profile picture and store it in the harddisk (public folder) and update the database (avatar_name).
-Dispay the profile picture in the dislay page .
-Display the profile information in the navbar in layout.app => DOING.
-Implement the search funtionality => DOING.
- - The search is gone be using the fullname for now.
- - The search results should be in an order by fuck am i even writing here.
-Display a user profile and the the following data:
--> The user profile informations .
+laravel todo::
+upload profile picture and store it in the harddisk (public folder) and update the database (avatar_name).
+dispay the profile picture in the dislay page .
+display the profile information in the navbar in layout.app => doing.
+implement the search funtionality => doing.
+ - the search is gone be using the fullname for now.
+ - the search results should be in an order by fuck am i even writing here.
+display a user profile and the the following data:
+-> the user profile informations .
 ->user posts and likes (and activity) .
 
-Link all the urls and stuff everything is a mess right now .
-Always check for permissions, Check if the user is who claims to be .
+link all the urls and stuff everything is a mess right now .
+always check for permissions, check if the user is who claims to be .
 
 
 //4/5/2017
-Users should be able to like posts and comment and them
-Likes :
-Table must have: id, user_id, post_id, timestamps.
-Create the migration and the model .
-Create the routes for the like and unlike functionalities along with the links to use them.
-The like and unlike are working nice.
+users should be able to like posts and comment and them
+likes :
+table must have: id, user_id, post_id, timestamps.
+create the migration and the model .
+create the routes for the like and unlike functionalities along with the links to use them.
+the like and unlike are working nice.
 
-Comments :
-Table must have: id, comment, user_id, post_id, timestamps.
-Create the migration and the model .
-Create the routes for commenting and deleting the comment.
-This is working perfectly fine .
+comments :
+table must have: id, comment, user_id, post_id, timestamps.
+create the migration and the model .
+create the routes for commenting and deleting the comment.
+this is working perfectly fine .
 
-IDEAS :
-It would be better to have a single user table with all the fields in it instead of having a user and profile entities.
+ideas :
+it would be better to have a single user table with all the fields in it instead of having a user and profile entities.
 
 //4/6/2017
-Merging the profile and user tables into one table user
-Create te migration and add fields .
-Delete the Profile model and replace it by User .
-1 - Register controller
------Done ------
-Display the user avatar in the comments section and also posts .
+merging the profile and user tables into one table user
+create te migration and add fields .
+delete the profile model and replace it by user .
+1 - register controller
+-----done ------
+display the user avatar in the comments section and also posts .
 
-Include angular js and shit
+include angular js and shit
 
-Change the like button from a form to a link using angular to toggle status => not done yet.
+change the like button from a form to a link using angular to toggle status => not done yet.
 
 //4/7/2017
-Load the comments using angular js
+load the comments using angular js
 
 //4/8/2017
-Add the following functionality
-Create the follow model and migration.
-Think about it for a minute.
-The search is not working properly => doing.
+add the following functionality
+create the follow model and migration.
+think about it for a minute.
+the search is not working properly => done.
+what exactly happens when you follow a user:
+1- insert into following table
+    *- following table structure:
+        - id, user_id, followed_id, timestamps,
+        => attempt #1
+when registering a new user insert name in the fullname as a default the user can change it later to whatever he wants .
+if the user doesn't have a profile picture display the default one
+get the list of the following of a user and display them in the profile display action.

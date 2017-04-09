@@ -9,7 +9,10 @@
                     <div class="ui dimmer transition hidden">
                         <div class="content">
                             <div class="center">
-                                <div class="ui blue button">Follow</div>
+                                {!! Form::open(['url' => route('profile.follow')]) !!}
+                                {!! Form::hidden('user_id', $profile->id) !!}
+                                    <button type="submit" class="ui blue button">Follow</button>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+/**
+ * PostController Routes
+ */
 Route::group(['prefix' => 'post', 'using' => 'PostController'], function () {
     Route::get('post', 'PostController@index')->name('post.index');
     Route::post('store', 'PostController@store')->name('post.store');
@@ -26,6 +29,9 @@ Route::group(['prefix' => 'post', 'using' => 'PostController'], function () {
 });
 
 
+/**
+ * ProfileController Routes
+ */
 Route::group(['prefix' => 'profile', 'using' => 'ProfileController'], function () {
     Route::get('settings', 'ProfileController@settings')->name('profile.settings');
     Route::get('display/{name?}', 'ProfileController@display')->name('profile.display');
@@ -34,12 +40,20 @@ Route::group(['prefix' => 'profile', 'using' => 'ProfileController'], function (
     Route::post('upload', 'ProfileController@upload')->name('profile.upload');
     Route::get('avatar', 'ProfileController@avatar');
     Route::post('search', 'ProfileController@search')->name('profile.search');
+    Route::post('follow', 'ProfileController@follow')->name('profile.follow');
+    Route::get('{name?}/following', 'ProfileController@following')->name('profile.following');
 });
 
+/**
+ * Post liking routes
+ */
 Route::group(['prefix' => 'like'], function () {
     Route::post('like', 'LikeController@like')->name('like.like');
 });
 
+/**
+ * Commenting Routes
+ */
 Route::group(['prefix' => 'comment'], function () {
     Route::post('create', 'CommentController@create')->name('comment.create');
     Route::post('remove', 'CommentController@remove')->name('comment.remove');

@@ -25,28 +25,42 @@
                         <p>{{ $profile->about }}</p>
                     </div>
                     <div class="extra content">
-                        <a href="{{ route('profile.following', ['name' => $profile->name]) }}">
-                            <span>Following :{{ $profile->following()->count() }}</span>
-                        </a>
+                        <span>Following :{{ $profile->following()->count() }}</span>
                     </div>
                 </div>
             </div>
             <div class="ten wide column">
-                <div class="ui blue secondary pointing menu">
-                    <a class="active item" href="#posts" data-tab="posts">
-                        <i class="fa fa-square"></i>
-                         Posts
-                    </a>
-                    <a class="item" href="#likes" data-tab="likes">
-                        <i class="fa fa-heart"></i>
-                        Likes
-                    </a>
-                </div>
-                <div class="ui bottom attached active tab segment" data-tab="posts">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aperiam at autem blanditiis consectetur consequuntur dicta dolorem enim expedita laborum maiores numquam odio quis rerum, vel voluptatum! Numquam, sapiente?</p>
-                </div>
-                <div class="ui bottom attached tab segment" data-tab="likes">
-                    <p>Another Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea earum facilis fugit illo repudiandae tenetur? Accusantium aperiam asperiores consequatur cumque doloremque dolores ducimus enim, ex maxime sunt ullam vero!</p>
+                <div class="ui four cards">
+                    @foreach($profiles as $profile)
+                        <div class="ui card">
+                            <div class="blurring dimmable image">
+                                <div class="ui dimmer transition hidden">
+                                    <div class="content">
+                                        <div class="center">
+                                            {!! Form::open(['url' => route('profile.follow')]) !!}
+                                            {!! Form::hidden('user_id', $profile->id) !!}
+                                            <button type="submit" class="ui blue button">Follow</button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="{{ $profile->avatarUrl }}">
+                            </div>
+                            <div class="content">
+                                <div class="header">
+                                    <a href="{{ route('profile.full', ['id' => $profile->id]) }}">
+                                        {{ $profile->fullname }}
+                                    </a>
+                                </div>
+                                <div class="description">{{ $profile->about }}</div>
+                            </div>
+                            <div class="extra content">
+                                <a class="friends">
+                                    <i class="fa fa-clock-o"></i>
+                                    Joined {{ $profile->created_at->diffForHumans() }}</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -55,14 +69,8 @@
 
 @section('js')
     <script>
-
         $(document)
                 .ready(function() {
-                    $('.menu .item').tab();
-
-                    /* this should change both tab content and tab item */
-                    $.tab('change tab', 'second');
-
                     $('.ui.menu .ui.dropdown').dropdown({
                         on: 'hover'
                     });

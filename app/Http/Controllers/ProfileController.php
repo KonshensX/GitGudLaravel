@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Following;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -114,6 +115,33 @@ class ProfileController extends Controller
 
         return view('profile.settings', [
             'profile' => User::where('id', $userid)->first(),
+        ]);
+    }
+
+    public function follow (Request $request) {
+        $followed_id = Input::get('user_id');
+        if (!$followed_id) {
+            return redirect()->route('post.index');
+        }
+
+        $followed = Following::create([
+            'user_id' => Auth::user()->id,
+            'followed_id' => $followed_id,
+        ]);
+
+        return response()->json($followed);
+
+    }
+
+    public function following (Request $request, $query) {
+        if (!$query) {
+            return redirect()->route('post.index');
+        }
+        $user = User::where('name', $query)->first();
+
+        return view('profile.following', [
+            'profile' => $user,
+            'profiles' => Following::where('user_id', $user->id)
         ]);
     }
 }
