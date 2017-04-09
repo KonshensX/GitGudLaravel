@@ -4,32 +4,7 @@
     <div class="ui grid">
         <div class="row">
             <div class="six wide column">
-                <div class="ui card">
-                    <div class="blurring dimmable image">
-                        <div class="ui dimmer transition hidden">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui inverted button">Call to Action</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ $profile->avatarUrl }}">
-                    </div>
-                    <div class="content">
-                        <a class="header">{{ $profile->fullname }}</a>
-                        <div class="meta">
-                            <span class="date">Joined {{ $profile->created_at->diffForHumans() }}</span>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <p>{{ $profile->about }}</p>
-                    </div>
-                    <div class="extra content">
-                        <a href="{{ route('profile.following', ['name' => $profile->name]) }}">
-                            <span>Following :{{ $profile->following()->count() }}</span>
-                        </a>
-                    </div>
-                </div>
+                @include('profile.usercard')
             </div>
             <div class="ten wide column">
                 <div class="ui blue secondary pointing menu">
@@ -42,8 +17,15 @@
                         Likes
                     </a>
                 </div>
-                <div class="ui bottom attached active tab segment" data-tab="posts">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aperiam at autem blanditiis consectetur consequuntur dicta dolorem enim expedita laborum maiores numquam odio quis rerum, vel voluptatum! Numquam, sapiente?</p>
+                <div class="ui bottom attached active tab segment" data-tab="posts" ng-controller="ProfileController" ng-init="init({{ $profile->id }})">
+                    <div class="ui active inverted dimmer" ng-show="loading">
+                        <div class="ui text loader">
+                            Loading ...
+                        </div>
+                    </div>
+                    <article ng-reapeat="post in posts">
+                        @{{ post.content }}
+                    </article>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="likes">
                     <p>Another Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea earum facilis fugit illo repudiandae tenetur? Accusantium aperiam asperiores consequatur cumque doloremque dolores ducimus enim, ex maxime sunt ullam vero!</p>
@@ -54,6 +36,7 @@
 @endsection
 
 @section('js')
+    <script src="{{ URL::asset('client/controllers/ProfileController.js') }}"></script>
     <script>
 
         $(document)

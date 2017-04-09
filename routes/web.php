@@ -42,6 +42,7 @@ Route::group(['prefix' => 'profile', 'using' => 'ProfileController'], function (
     Route::post('search', 'ProfileController@search')->name('profile.search');
     Route::post('follow', 'ProfileController@follow')->name('profile.follow');
     Route::get('{name?}/following', 'ProfileController@following')->name('profile.following');
+    Route::post('getUserPosts', 'ProfileController@getUserPosts')->name('profile.userPosts');
 });
 
 /**

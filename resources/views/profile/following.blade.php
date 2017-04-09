@@ -4,30 +4,7 @@
     <div class="ui grid">
         <div class="row">
             <div class="six wide column">
-                <div class="ui card">
-                    <div class="blurring dimmable image">
-                        <div class="ui dimmer transition hidden">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui inverted button">Call to Action</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ $profile->avatarUrl }}">
-                    </div>
-                    <div class="content">
-                        <a class="header">{{ $profile->fullname }}</a>
-                        <div class="meta">
-                            <span class="date">Joined {{ $profile->created_at->diffForHumans() }}</span>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <p>{{ $profile->about }}</p>
-                    </div>
-                    <div class="extra content">
-                        <span>Following :{{ $profile->following()->count() }}</span>
-                    </div>
-                </div>
+                @include('profile.usercard')
             </div>
             <div class="ten wide column">
                 <div class="ui four cards">

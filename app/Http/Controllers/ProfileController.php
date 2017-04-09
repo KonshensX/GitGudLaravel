@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Following;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -143,5 +144,12 @@ class ProfileController extends Controller
             'profile' => $user,
             'profiles' => Following::where('user_id', $user->id)
         ]);
+    }
+
+
+    public function getUserPosts (Request $request) {
+        $user_id = Input::get('id');
+        $posts = Post::where('user_id', $user_id)->get();
+        return response()->json($posts);
     }
 }
