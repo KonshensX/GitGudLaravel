@@ -11,5 +11,5 @@
 }
 
 .longloader {
-    height: 150px;
+    height: 150px !important;
 }

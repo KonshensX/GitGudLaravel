@@ -148,6 +148,7 @@ class ProfileController extends Controller
 
 
     public function getUserPosts (Request $request) {
+        sleep(5);
         $user_id = Input::get('id');
         $posts = Post::where('user_id', $user_id)->get();
         return response()->json($posts);

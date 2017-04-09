@@ -3,7 +3,11 @@
 @section('content')
     <div class="ui grid">
         <div class="row">
-            <div class="ten wide column">
+            <div class="sixteen wide column" >
+                <h2 class="ui center aligned icon header">
+                    <i class="circular users icon"></i>
+                    Following
+                </h2>
                 <div class="ui four cards">
                     @foreach($profiles as $profile)
                         <div class="ui card">

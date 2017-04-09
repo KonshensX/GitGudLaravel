@@ -15,9 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('profile.usercard', function ($view) {
-            $view->with('profile', User::where('name', Auth::user()->name)->first());
-        });
+        if (!Auth::check())
+        {
+            view()->composer('profile.usercard', function ($view) {
+                $view->with('profile', User::where('name', Auth::user()->name)->first());
+            });
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="ui bottom inverted segment">
+    <div class="ui bottom blue segment">
         <div class="ui form" style="overflow: hidden;">
             {!! Form::open(['url' => route('post.store')]) !!}
             <div class="field">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="ui segment" ng-controller="HomeController">
-        <div class="ui active inverted dimmer" ng-show="loading">
+        <div class="ui active inverted dimmer longloader" ng-show="loading">
             <div class="ui text loader">
                 Loading...
             </div>
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="ui grid">
                         <div class="one wide column">
-                            <img class="ui rounded image" src="@{{ post.userInfo.avatarUrl }}" alt="">
+                            <img class="ui image" src="@{{ post.userInfo.avatarUrl }}" alt="">
                         </div>
                         <div class="ten wide column" style="overflow: hidden;">
                             <a href="{{ route('profile.display') }}/@{{ post.userInfo.name }}">

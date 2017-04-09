@@ -4,7 +4,7 @@ app.controller('HomeController', function ($scope, $http, $timeout) {
 
     $scope.posts = $http({
         method: 'GET',
-        url: '/Akkar/public/post/getPosts'
+        url: '/Clone/public/post/getPosts'
     })
         .then(function (response) {
             $scope.posts = response.data;

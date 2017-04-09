@@ -16,7 +16,11 @@
         </div>
     </div>
     <div class="extra content">
-        <p>{{ $profile->about }}</p>
+        @if ($profile->about)
+            <p>{{ $profile->about }}</p>
+        @else
+            <p>"This user likes to keep private"</p>
+        @endif
     </div>
     <div class="extra content">
         <a href="{{ route('profile.following', ['name' => $profile->name]) }}">

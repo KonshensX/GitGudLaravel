@@ -7,7 +7,7 @@ app.controller('ProfileController', function ($scope, $http) {
         $http({
             method: 'POST',
             data: {id: id},
-            url: '/Akkar/public/profile/getUserPosts'
+            url: '/Clone/public/profile/getUserPosts'
         })
         .then(function (response) {
             $scope.posts = response.data;

@@ -89,10 +89,12 @@
     <div class="ui container">
         <div class="ui grid">
             <div class="row">
-                <div class="four wide column">
-                    @include('profile.usercard')
-                </div>
-                <div class="eight wide column">
+                @if (\Illuminate\Support\Facades\Auth::check())
+                    <div class="three wide column">
+                        @include('profile.usercard')
+                    </div>
+                @endif
+                <div class="nine wide column">
                     @yield('content')
                 </div>
                 <div class="four wide column">
