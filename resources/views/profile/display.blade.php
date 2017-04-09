@@ -3,9 +3,6 @@
 @section('content')
     <div class="ui grid">
         <div class="row">
-            <div class="six wide column">
-                @include('profile.usercard')
-            </div>
             <div class="ten wide column">
                 <div class="ui blue secondary pointing menu">
                     <a class="active item" href="#posts" data-tab="posts">
@@ -17,13 +14,13 @@
                         Likes
                     </a>
                 </div>
-                <div class="ui bottom attached active tab segment" data-tab="posts" ng-controller="ProfileController" ng-init="init({{ $profile->id }})">
-                    <div class="ui active inverted dimmer" ng-show="loading">
+                <div class="ui bottom active tab segment" data-tab="posts" ng-controller="ProfileController" ng-init="init({{ $profile->id }})">
+                    <div class="ui active dimmer longloader" ng-show="loading">
                         <div class="ui text loader">
                             Loading ...
                         </div>
                     </div>
-                    <article ng-reapeat="post in posts">
+                    <article ng-repeat="post in posts">
                         @{{ post.content }}
                     </article>
                 </div>

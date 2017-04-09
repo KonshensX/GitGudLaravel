@@ -3,9 +3,6 @@
 @section('content')
     <div class="ui grid">
         <div class="row">
-            <div class="six wide column">
-                @include('profile.usercard')
-            </div>
             <div class="ten wide column">
                 <div class="ui four cards">
                     @foreach($profiles as $profile)

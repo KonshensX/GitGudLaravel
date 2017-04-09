@@ -89,18 +89,19 @@
     <div class="ui container">
         <div class="ui grid">
             <div class="row">
-                <div class="three wide column">
-                    <h5 class="ui top attached red header">
-                        Trending #
-                    </h5>
-                    <div class="ui bottom attached segment">
-                        <ul>
-                            <li>#fucl</li>
-                        </ul>
-                    </div>
+                <div class="four wide column">
+                    @include('profile.usercard')
                 </div>
-                <div class="eleven wide column">
+                <div class="eight wide column">
                     @yield('content')
+                </div>
+                <div class="four wide column">
+                    <div class="ui top attached header">
+                        <span>Header</span>
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam distinctio dolorem, ea eaque eius eos eveniet excepturi itaque maxime mollitia quam quisquam, rerum sapiente sequi sunt voluptate voluptates voluptatum!</p>
+                    </div>
                 </div>
             </div>
         </div>
