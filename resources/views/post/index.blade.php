@@ -1,16 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="ui bottom blue segment">
+    <div class="ui bottom blue segment transparent-panel">
         <div class="ui form" style="overflow: hidden;">
-            {!! Form::open(['url' => route('post.store')]) !!}
+            {!! Form::open(['url' => route('post.store'), 'files' => true]) !!}
             <div class="field">
                 {!! Form::textarea('content', null, ['rows' => 2, 'placeholder' => 'How is your day going...']) !!}
             </div>
             <div class="">
-                <i class="fa fa-image"></i>
-                or
-                <i class="fa fa-video-camera"></i>
+                <label for="file-upload" class="ui label">
+                    <i class="fa fa-image"></i>
+                    or
+                    <i class="fa fa-video-camera"></i>
+                </label>
+                <input id="file-upload" name="file-upload" type="file" class="hidden-input">
+
                 <button class="ui right floated primary labeled icon button tiny">
                     <i class="fa-plus icon"></i>
                     Post
@@ -20,45 +24,43 @@
         </div>
     </div>
 
-    <div class="ui segment" ng-controller="HomeController">
-        <div class="ui active inverted dimmer longloader" ng-show="loading">
-            <div class="ui text loader">
+    <div class="ui segment transparent-panel" ng-controller="HomeController">
+        <h4>News feed</h4>
+        <div class="ui active dimmer longloader" ng-show="loading">
+            <div class="ui large text loader">
                 Loading...
             </div>
         </div>
-        <div class="ui column" ng-repeat="post in posts">
-            <div class="ui top attached header">
-                <div class="row">
-                    <div class="ui grid">
-                        <div class="one wide column">
-                            <img class="ui image" src="@{{ post.userInfo.avatarUrl }}" alt="">
-                        </div>
-                        <div class="ten wide column" style="overflow: hidden;">
-                            <a href="{{ route('profile.display') }}/@{{ post.userInfo.name }}">
-                                @{{ post.userInfo.name }}
+        <div class="ui bottom segment transparent-card" ng-repeat="post in posts">
+            <div class="ui items" >
+                <div class="item">
+                    <div class="ui mini circular image">
+                        <img src="@{{ post.userInfo.avatarUrl }}">
+                    </div>
+                    <div class="content">
+                        <a class="header">@{{ post.userInfo.name }}</a>
+                        <div class="meta">
+                            <a href="{{ route('post.full') }}/@{{ post.id }}">
+                                <span>@{{ post.humanDate }}</span>
                             </a>
-                            <br>
-                            @{{  post.content }}
+                        </div>
+                        <div class="description">
+                            <p>@{{ post.content }}</p>
+                            <img class="ui rounded image" src="@{{ post.attachmentUrl }}">
+                        </div>
+                        <div class="extra">
+                            <i class="fa fa-comment"></i>
+                             @{{ post.commentsCount }}
+                             &emsp;
+                            <i class="fa fa-heart"></i>
+                             @{{ post.likesCount }}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="ui bottom attached segment" style="overflow: hidden;">
-                <a href="{{ route('post.full') }}/@{{ post.id }}" class="">
-                    <i class="fa fa-clock-o"></i>
-                    @{{ post.humanDate }}
-                </a>
-                <div class="right floated" style="float: right;">
-
-                    <a class="ui red mini">
-                        <i class="fa fa-heart liked" ng-class="'liked' "></i> @{{ post.likesCount }}
-                    </a>
-                    <a class="ui grey mini">
-                        <i class="fa fa-comment comments"></i> @{{ post.commentsCount }}
-                    </a>
-                </div>
-            </div>
-        </div>
+                <div class="ui devider"></div>
+            </div>  
+        </div>  
+        
     </div>
 @endsection
 

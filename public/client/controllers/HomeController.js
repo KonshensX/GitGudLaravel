@@ -7,6 +7,7 @@ app.controller('HomeController', function ($scope, $http, $timeout) {
         url: '/Clone/public/post/getPosts'
     })
         .then(function (response) {
+            console.log(response.data);
             $scope.posts = response.data;
             $scope.loading = false;
         })

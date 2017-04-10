@@ -3,12 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Post extends Model
 {
-    protected $fillable = ['content', 'user_id'];
+    protected $fillable = [
+        'content',
+        'user_id',
+        'attachment_id'
+    ];
 
-    protected $appends = ['humanDate', 'userInfo', 'likesCount', 'commentsCount', 'liked'];
+    protected $appends = [
+        'humanDate',
+        'userInfo',
+        'likesCount',
+        'commentsCount',
+        'liked',
+        'attachmentUrl'
+    ];
 
     public function user () {
         return $this->belongsTo(User::class);
@@ -24,6 +36,19 @@ class Post extends Model
 
     public function getHumanDateAttribute () {
         return $this->created_at->diffForHumans();
+    }
+
+    public function attachment () {
+        return $this->hasMany(Attachment::class);
+    }
+
+    //TODO:
+    public function getAttachmentUrlAttribute () {
+        if ($this->attachment()->first()) {
+            $path = $this->attachment()->first()->attachment_path;
+            return URL::asset("uploads/attachments/$path");
+        }
+        return null;
     }
 
     public function getUserInfoAttribute () {

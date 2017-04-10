@@ -138,11 +138,18 @@ class ProfileController extends Controller
         if (!$query) {
             return redirect()->route('post.index');
         }
+
         $user = User::where('name', $query)->first();
+        $followingArray = Following::where('user_id', $user->id)->get();
+
+        foreach ($followingArray as $key => $value) {
+            $profiles[] = User::find($value->followed_id);
+        }
+        
 
         return view('profile.following', [
             'profile' => $user,
-            'profiles' => Following::where('user_id', $user->id)
+            'profiles' => $profiles
         ]);
     }
 

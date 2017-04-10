@@ -32,10 +32,11 @@
     <h3>Comments: {{ $post->comments()->count() }}</h3>
     <hr>
         <div class="ui comments" ng-controller="PostController">
-        <div class="comment" ng-repeat="comment in comments">
             <div class="ui active inverted dimmer" ng-show="loading">
-                <div class="ui medium text loader">Loading comments...</div>
+                <div class="ui large text loader">Loading comments...</div>
             </div>
+        <div class="comment" ng-repeat="comment in comments">
+
             <div class="avatar">
 
                 <img class="" src=" @{{ comment.user.avatarUrl }}" alt="">

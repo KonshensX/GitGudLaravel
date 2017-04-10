@@ -3,7 +3,7 @@ app.controller('PostController', function ($scope, $http) {
 
     //Get the comments from the database
     $scope.comments = $http({
-        url: '/Akkar/public/comment/getPostComments/' + document.querySelector('#id').dataset.id
+        url: '/Clone/public/comment/getPostComments/' + document.querySelector('#id').dataset.id
     })
     .then(function (response) {
         $scope.comments = response.data;

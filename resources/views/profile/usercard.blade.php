@@ -1,4 +1,4 @@
-<div class="ui card">
+<div class="ui card transparent-panel">
     <div class="blurring dimmable image">
         <div class="ui dimmer transition hidden">
             <div class="content">

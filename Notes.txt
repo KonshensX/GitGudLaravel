@@ -58,3 +58,8 @@ what exactly happens when you follow a user:
 when registering a new user insert name in the fullname as a default the user can change it later to whatever he wants .
 if the user doesn't have a profile picture display the default one
 get the list of the following of a user and display them in the profile display action.
+Should i work on liking the post using angular or on the post attachments (Pictures and Videos).
+Attachements table
+    id, post_id, attachement_path, timestamps => false
+    Create the attachments model
+    The attachments_id is actually useless and can get rid off (Make it null for now)
