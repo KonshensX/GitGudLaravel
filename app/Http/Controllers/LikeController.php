@@ -20,13 +20,22 @@ class LikeController extends Controller
         //Store the like in the likes table, no pivot table required
         //Check if post is already liked
         //Checking if the row exists in the likes table
-        $liked = Like::where(['user_id' => Auth::user()->id, 'post_id' => $request->only('id')['id']])->first();
+        $post_id = $request->only('id')['id'];
+        $liked = Like::where(['user_id' => Auth::user()->id, 'post_id' => $post_id])->first();
         if ($liked) {
             $this->unlike($liked);
-            return redirect()->route('post.index');
+
+            return response()->json([
+                'liked' => false,
+                'likesCount' => Like::where('post_id', $post_id)->count()
+            ]);
         }
         $like = Like::create(['user_id' => Auth::user()->id, 'post_id' => $request->only('id')['id']]);
-        return redirect()->route('post.index');
+
+        return response()->json([
+            'liked' => true,
+            'likesCount' => Like::where('post_id', $post_id)->count()
+        ]);
     }
 
 

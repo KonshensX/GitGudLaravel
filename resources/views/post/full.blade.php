@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="ui top attached header">
-        <div class="ui comment">
+        <div class="ui comment transparent-panel">
             <div class="row">
                 <div class="ten wide column">
                     <input type="hidden" id="id" data-id="{{ $post->id }}">

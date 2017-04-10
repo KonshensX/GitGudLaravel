@@ -26,6 +26,10 @@ body {
     color: #fff !important;
 }
 
+.hearted {
+    color: #d62728 !important;
+}
+
 .comments {
     color: #e3e3e3;
 }

@@ -52,7 +52,9 @@
                             <i class="fa fa-comment"></i>
                              @{{ post.commentsCount }}
                              &emsp;
-                            <i class="fa fa-heart"></i>
+                            <a ng-click="likePost(post.id)">
+                                <i class="fa fa-heart" ng-class="{'hearted': post.liked, '': !post.liked}"></i>
+                            </a>
                              @{{ post.likesCount }}
                         </div>
                     </div>

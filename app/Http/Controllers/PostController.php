@@ -13,23 +13,37 @@ use Illuminate\Support\Facades\Response;
 class PostController extends Controller
 {
 
+    /**
+     * Index page which display posts
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index () {
 
         $posts = Post::limit(30)->orderBy('created_at', 'DESC')->get();
         return view('post.index', compact('posts'));
     }
 
+
+    /**
+     * Empty as hell for now
+     * @param Request $request
+     */
     public function add (Request $request) {
 
     }
 
+    /**
+     * Store the post in the database along with the attachment
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store (Request $request) {
         if (!Auth::check()) {
             return response()->json([
                 'error' => "You're not logged in, you're not allowed to post"
             ]);
         }
-        $attachment = null;
+        $post = Post::create(['content' => Input::get('content'), 'user_id' => Auth::user()->id]);
         //dd(Auth::user()->id);
         if (Input::hasFile('file-upload')) {
 
@@ -41,11 +55,10 @@ class PostController extends Controller
             $file->storePubliclyAs('uploads/attachments', $filename, 'public');
             //Store the attachment and retrieve the id
             $attachment = Attachment::create([
-                //'post_id' => $post->id,
+                'post_id' => $post->id,
                 'attachment_path' => $filename]);
             //$data['attachment_id'] = $filename;
         }
-        $post = Post::create(['content' => Input::get('content'), 'user_id' => Auth::user()->id, 'attachment_id' => $attachment->id]);
 
         return redirect()->route('post.index');
     }
@@ -70,7 +83,6 @@ class PostController extends Controller
      */
     public function getPosts() {
         //simulating a delay
-        sleep(2);
         return Response::json($posts = Post::limit(30)->orderBy('created_at', 'DESC')->get());
     }
 }

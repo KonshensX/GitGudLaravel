@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 class Post extends Model
@@ -19,7 +20,8 @@ class Post extends Model
         'likesCount',
         'commentsCount',
         'liked',
-        'attachmentUrl'
+        'attachmentUrl',
+        'liked',
     ];
 
     public function user () {
@@ -64,6 +66,13 @@ class Post extends Model
     }
 
     public function getLikedAttribute () {
-        //return $this
+        $liked = Like::where([
+            'post_id' => $this->id,
+            'user_id' => Auth::user()->id
+        ])->get();
+        if ($liked->count()) {
+            return true;
+        }
+        return false;
     }
 }
