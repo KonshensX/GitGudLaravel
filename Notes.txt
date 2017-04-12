@@ -63,3 +63,10 @@ Attachements table
     id, post_id, attachement_path, timestamps => false
     Create the attachments model
     The attachments_id is actually useless and can get rid off (Make it null for now)
+
+//12/4/2017
+Adding the likes count to the post full display page => done;
+Display the attachment of the post if theres any => done; 
+Add the ability for user to delete his comment => done;
+Delete the comment from the front end after deleting the comment => done
+Post a comment via angular without refreshing the page and it to the front (List) => TODO;

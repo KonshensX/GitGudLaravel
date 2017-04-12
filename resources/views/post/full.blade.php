@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="ui top attached header">
-        <div class="ui comment transparent-panel">
+    <div class="ui top attached header transparent-card">
+        <div class="ui comment">
             <div class="row">
                 <div class="ten wide column">
                     <input type="hidden" id="id" data-id="{{ $post->id }}">
@@ -25,14 +25,21 @@
             </div>
         </div>
     </div>
-    <div class="ui bottom attached segment" >
+    <div class="ui bottom attached segment transparent-panel" >
         {{ $post->content }}
+        @if ($post->attachmentUrl) 
+            <img class="ui rounded image" src="{{ $post->attachmentUrl }}" alt="{{ $post->user->name }}">
+        @endif
         <hr>
+        <span>
+            <i class="fa fa-heart"></i>
+             {{ $post->likesCount }}
+        </span>
     </div>
     <h3>Comments: {{ $post->comments()->count() }}</h3>
     <hr>
         <div class="ui comments" ng-controller="PostController">
-            <div class="ui active inverted dimmer" ng-show="loading">
+            <div class="ui active dimmer" ng-show="loading">
                 <div class="ui large text loader">Loading comments...</div>
             </div>
         <div class="comment" ng-repeat="comment in comments">
@@ -64,7 +71,10 @@
                     @{{ comment.comment }}
                 </div>
                 <div class="actions">
-                    Delete
+                    <a class="text red" ng-click="deleteComment(comment.id)">
+                        <i class="fa fa-trash"></i>
+                        Delete
+                    </a>
                 </div>
             </div>
         </div>
@@ -86,5 +96,4 @@
 
 @section('js')
     <script src="{{ URL::asset('client/controllers/PostController.js') }}"></script>
-
 @endsection

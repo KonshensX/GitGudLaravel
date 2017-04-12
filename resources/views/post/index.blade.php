@@ -26,6 +26,11 @@
 
     <div class="ui segment transparent-panel" ng-controller="HomeController">
         <h4>News feed</h4>
+        <div class="ui segment transparent-card" ng-show="errorLoading">
+            <div class="ui center">
+                Sorry, Something went wrong
+            </div>
+        </div>
         <div class="ui active dimmer longloader" ng-show="loading">
             <div class="ui large text loader">
                 Loading...

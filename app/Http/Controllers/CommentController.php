@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Input;
 
 class CommentController extends Controller
 {
@@ -23,14 +24,20 @@ class CommentController extends Controller
     }
 
     public function remove (Request $request) {
-
-        //Get the comment and delete it
-        $id = $request->get('id');
+        $id = Input::get('id');
         $comment = Comment::where('id', $id)->first();
-        $comment->delete();
-        return redirect()->route('post.full', [
-            'id' => $comment->post()->first()->id
-        ]);
+        if (Auth::check()) {
+            if (Auth::user()->id == $comment->user->id) {
+                $comment->delete();
+                $data = ['message' => 'comment_deleted'];
+            }  else {
+                $data = ['message' => 'comment_not_deleted'];
+            }
+        }
+        //Get the comment and delete it
+        //Return json response after deleting the comment 
+    
+        return response()->json($data);    
     }
 
     /**

@@ -1,6 +1,7 @@
 app.controller('HomeController', function ($scope, $http, $timeout) {
     $scope.posts = [];
     $scope.loading = true;
+    $scope.errorLoading = false;
 
     $scope.posts = $http({
         method: 'GET',
@@ -11,7 +12,8 @@ app.controller('HomeController', function ($scope, $http, $timeout) {
         $scope.loading = false;
     })
     .catch(function (err) {
-        console.log(err);
+        $scope.errorLoading = true;
+        $scope.loading = true;
     });
 
 

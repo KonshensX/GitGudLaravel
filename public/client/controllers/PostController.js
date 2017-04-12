@@ -14,4 +14,29 @@ app.controller('PostController', function ($scope, $http) {
         $scope.loading  = false;
     });
 
+    $scope.deleteComment = function (id) {
+        $http({
+            method: 'POST',
+            data: {
+                id
+            },
+            url: '/Clone/public/comment/remove',
+        })
+        .then (function (response) {
+            //Delete the comment from the list when the comment is deleted from the database
+            if (response.data.message === "comment_deleted") {
+                for(var i = 0; i < $scope.comments.length; i++) {
+                    var post = $scope.comments[i];
+                    if (post.id == id) {
+                        $scope.comments.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        })
+        .catch (function (error) {
+            alert(error);
+        });
+    }
+
 });

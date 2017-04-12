@@ -53,6 +53,10 @@
                             <i class="cogs icon"></i>
                             Settings
                         </a>
+                        <a href="{{ route('profile.avatar') }}" class="item">
+                            <i class="image icon"></i>
+                             Change Avatar
+                        </a>
                     </div>
                 </div>
             <div class="ui icon">
