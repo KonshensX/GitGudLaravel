@@ -79,12 +79,12 @@
             </div>
         </div>
     </div>
-    <div class="ui form">
+    <div class="ui form" ng-controller="PostController">
         <h3>Comment:</h3>
-        {!! Form::open(['url' => route('comment.create')]) !!}
-            {!! Form::hidden('id', $post->id) !!}
+        {!! Form::open(['ng-submit' => 'postComment(' . $post->id . ')', 'onsubmit' => 'return false']) !!}
             <div class="field">
-                {!! Form::textarea('comment', null, ['rows' => 3, 'placeholder' => 'Your comment here ...']) !!}
+                {!! Form::textarea('comment', null, ['rows' => 3, 'placeholder' => 'Your comment here ...', 
+                'ng-model' => 'comment.content']) !!}
             </div>
             <button type="submit" class="ui primary right floated button small icon">
                 <i class="fa-reply icon"></i>
@@ -96,4 +96,5 @@
 
 @section('js')
     <script src="{{ URL::asset('client/controllers/PostController.js') }}"></script>
+    <script src="{{ URL::asset('client/controllers/ExampleController.js') }}"></script>
 @endsection

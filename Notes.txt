@@ -69,4 +69,5 @@ Adding the likes count to the post full display page => done;
 Display the attachment of the post if theres any => done; 
 Add the ability for user to delete his comment => done;
 Delete the comment from the front end after deleting the comment => done
-Post a comment via angular without refreshing the page and it to the front (List) => TODO;
+Don't allow users to post empty comments => done;
+Post a comment via angular without refreshing the page and it to the front (List) => the comment is being added to both db and list but the comments list is not updating, weird => not done yet;

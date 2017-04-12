@@ -13,14 +13,16 @@ class CommentController extends Controller
 {
 
     public function create (Request $request) {
-
         //Insert the comment
+        if (Input::get('comment') == '') {
+            return redirect()->route('post.full', [
+                'id' => Input::get('id')
+            ]);
+        }
         $data = $request->only('comment', 'id');
         $comment = Comment::create(['comment' => $data['comment'], 'post_id' => $data['id'], 'user_id' => Auth::user()->id]);
 
-        return redirect()->route('post.full', [
-            'id' => $data['id']
-        ]);
+        return response()->json($comment);
     }
 
     public function remove (Request $request) {

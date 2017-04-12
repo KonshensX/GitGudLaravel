@@ -39,4 +39,26 @@ app.controller('PostController', function ($scope, $http) {
         });
     }
 
+    $scope.postComment = function (id) {
+        var data = {
+            'id' : id,
+            'comment': $scope.comment.content
+        };
+
+        $http({
+            method: 'POST', 
+            url: '/Clone/public/comment/create',
+            data: data 
+        })
+        .then (function (response) {
+            console.log($scope.comments);
+            $scope.comments.push(response.data);
+            console.log($scope.comments);
+        })
+        .catch (function (error) {
+            alert(error);
+        });
+
+    }
+
 });
