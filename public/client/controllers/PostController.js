@@ -1,6 +1,6 @@
 app.controller('PostController', function ($scope, $http) {
     $scope.loading = true;
-
+    $scope.comment_id = null;
     //Get the comments from the database
     $scope.comments = $http({
         url: '/Clone/public/comment/getPostComments/' + document.querySelector('#id').dataset.id
@@ -14,16 +14,27 @@ app.controller('PostController', function ($scope, $http) {
         $scope.loading  = false;
     });
 
-    $scope.deleteComment = function (id) {
+
+    $scope.displayConfirmation = function (id) {
+        $scope.comment_id = id;
+        console.log($scope)
+        $('.ui.basic.modal')
+          .modal('show')
+        ;
+    }
+
+
+    $scope.deleteComment = function () {
+        console.log($scope);
+        return;
         $http({
             method: 'POST',
             data: {
-                id
+                id: $scope.commentID
             },
             url: '/Clone/public/comment/remove',
         })
         .then (function (response) {
-            //Delete the comment from the list when the comment is deleted from the database
             if (response.data.message === "comment_deleted") {
                 for(var i = 0; i < $scope.comments.length; i++) {
                     var post = $scope.comments[i];
@@ -39,6 +50,10 @@ app.controller('PostController', function ($scope, $http) {
         });
     }
 
+    $scope.$watch ('comments', function () {
+        console.log('comments var changed');
+    });
+
     $scope.postComment = function (id) {
         var data = {
             'id' : id,
@@ -51,9 +66,7 @@ app.controller('PostController', function ($scope, $http) {
             data: data 
         })
         .then (function (response) {
-            console.log($scope.comments);
             $scope.comments.push(response.data);
-            console.log($scope.comments);
         })
         .catch (function (error) {
             alert(error);

@@ -70,4 +70,6 @@ Display the attachment of the post if theres any => done;
 Add the ability for user to delete his comment => done;
 Delete the comment from the front end after deleting the comment => done
 Don't allow users to post empty comments => done;
+Display the comment form only if the user is logged in => done ;
 Post a comment via angular without refreshing the page and it to the front (List) => the comment is being added to both db and list but the comments list is not updating, weird => not done yet;
+Display a confirmation modal when deleting a comment => doing;

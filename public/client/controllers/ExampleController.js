@@ -4,4 +4,8 @@ app.controller ('ExampleController', function ($scope) {
 		console.log('submitted');
 
 	}
+
+	$scope.fuck = function (id) {
+		
+	}
 });

@@ -71,7 +71,7 @@
                     @{{ comment.comment }}
                 </div>
                 <div class="actions">
-                    <a class="text red" ng-click="deleteComment(comment.id)">
+                    <a class="text red" ng-click="displayConfirmation(comment.id)">
                         <i class="fa fa-trash"></i>
                         Delete
                     </a>
@@ -79,6 +79,7 @@
             </div>
         </div>
     </div>
+    @if (Auth::check()) 
     <div class="ui form" ng-controller="PostController">
         <h3>Comment:</h3>
         {!! Form::open(['ng-submit' => 'postComment(' . $post->id . ')', 'onsubmit' => 'return false']) !!}
@@ -91,10 +92,37 @@
                  Comment
             </button>
         {!! Form::close() !!}
+            <!-- modal -->
+        <div class="ui basic modal">
+          <div class="ui icon header">
+            <i class="trash icon"></i>
+            Delete comment
+          </div>
+          <div class="content center">
+            <p>Please confirm, do you really want to delete this comment?</p>
+          </div>
+          <div class="actions">
+            <div class="ui red basic cancel inverted button">
+              <i class="remove icon"></i>
+              No
+            </div>
+            <button class="ui green ok inverted button" ng-click="deleteComment()">
+              <i class="checkmark icon"></i>
+              Yes
+            </button>
+          </div>
+        </div><!-- End of modal -->
     </div>
+    @else 
+    <div class="ui bottom segment transparent-panel">
+        You need to login to comment in this post
+    </div>
+    @endif
 @endsection
 
 @section('js')
     <script src="{{ URL::asset('client/controllers/PostController.js') }}"></script>
-    <script src="{{ URL::asset('client/controllers/ExampleController.js') }}"></script>
+    <script type="text/javascript">
+        
+    </script>
 @endsection
