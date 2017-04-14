@@ -76,6 +76,6 @@ Display a confirmation modal when deleting a comment => done;
 
 //14/4/2017
 Working on the following and unfollowing stuff ..
-If the user is already followed display a red unfollow button.
-Display the followers list using angular => doing .
-Add a loading indicator => doing .
+Display the followers list using angular => done .
+Add a loading indicator => done.
+If the user is already followed display a red unfollow button => doing.

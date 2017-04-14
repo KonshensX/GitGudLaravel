@@ -36,7 +36,7 @@ Route::group(['prefix' => 'profile', 'using' => 'ProfileController'], function (
     Route::get('settings', 'ProfileController@settings')->name('profile.settings');
     Route::get('display/{name?}', 'ProfileController@display')->name('profile.display');
     Route::post('update', 'ProfileController@update')->name('profile.update');
-    Route::get('full/{id}', 'ProfileController@full')->name('profile.full');
+    Route::get('full/{id?}', 'ProfileController@full')->name('profile.full');
     Route::post('upload', 'ProfileController@upload')->name('profile.upload');
     Route::get('avatar', 'ProfileController@avatar')->name('profile.avatar');
     Route::post('search', 'ProfileController@search')->name('profile.search');

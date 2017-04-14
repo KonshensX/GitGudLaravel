@@ -116,14 +116,27 @@
     <!-- Scripts -->
     <script>
         $(document)
-                .ready(function() {
-                    $('.ui.dropdown')
-                            .dropdown({
-                                on: 'click'
-                            })
-                    ;
-                })
+            .ready(function() {
+                $('.special.card .image').dimmer({
+                    on: 'hover'
+                });
+                $('.star.rating')
+                        .rating()
+                ;
+                $('.card .dimmer')
+                        .dimmer({
+                            on: 'hover'
+                        })
+                ;
+
+                $('.ui.dropdown')
+                        .dropdown({
+                            on: 'click'
+                        })
+                ;
+            })
         ;
+
     </script>
     @yield('js')
 

@@ -21,6 +21,7 @@ class User extends Authenticatable
 
     protected $appends = [
         'avatarUrl',
+        'humanDate'
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
             return URL::asset("uploads/avatar/$this->avatar_name");
         }
         return URL::asset("img/profilepic.png");
+    }
+
+    public function getHumanDateAttribute () {
+        return $this->created_at->diffForHumans();
     }
 }

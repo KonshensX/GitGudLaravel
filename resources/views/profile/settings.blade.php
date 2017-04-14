@@ -3,41 +3,7 @@
 @section('content')
     <div class="ui grid">
         <div class="row">
-            <div class="five wide column">
-                <div class="ui card">
-                    <div class="blurring dimmable image">
-                        <div class="ui dimmer transition hidden">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui inverted button">Open link</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ $profile->avatarUrl }}">
-                    </div>
-                    <div class="content">
-                        <a class="header">
-                            {{ $profile->fullname }}
-                        </a>
-                        <div class="meta">
-                            <span class="date">
-                                <i class="fa fa-map-marker"></i>
-                                 {{ $profile->location }}
-                            </span>
-                            <br>
-                            <i class="fa fa-audio-description"></i>
-                            <p> {{ $profile->about }} </p>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a>
-                            <i class="fa-calendar icon"></i>
-                            Member since : {{ $profile->created_at->format('Y M d') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="eleven wide column">
+            <div class="sixteen wide column">
                 <h4 class="ui top attached blue header">
                     <i class="fa fa-user"></i>
                     Update informations
