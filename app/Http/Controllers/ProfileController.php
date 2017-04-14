@@ -153,6 +153,18 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function getProfiles ($query) {
+        sleep(2);
+        $user = User::where('name', $query)->first();
+        $followingArray = Following::where('user_id', $user->id)->get();
+
+        foreach ($followingArray as $key => $value) {
+            $profiles[] = User::find($value->followed_id);
+        }
+
+        return response()->json($profiles);
+    }
+
 
     public function getUserPosts (Request $request) {
         sleep(5);

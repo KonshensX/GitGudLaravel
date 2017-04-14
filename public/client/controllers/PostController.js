@@ -17,7 +17,6 @@ app.controller('PostController', function ($scope, $http) {
 
     $scope.displayConfirmation = function (id) {
         $scope.comment_id = id;
-        console.log($scope)
         $('.ui.basic.modal')
           .modal('show')
         ;
@@ -25,20 +24,18 @@ app.controller('PostController', function ($scope, $http) {
 
 
     $scope.deleteComment = function () {
-        console.log($scope);
-        return;
         $http({
             method: 'POST',
             data: {
-                id: $scope.commentID
+                id: $scope.comment_id
             },
             url: '/Clone/public/comment/remove',
         })
         .then (function (response) {
             if (response.data.message === "comment_deleted") {
                 for(var i = 0; i < $scope.comments.length; i++) {
-                    var post = $scope.comments[i];
-                    if (post.id == id) {
+                    var comment = $scope.comments[i];
+                    if (comment.id == $scope.comment_id) {
                         $scope.comments.splice(i, 1);
                         break;
                     }
@@ -49,10 +46,6 @@ app.controller('PostController', function ($scope, $http) {
             alert(error);
         });
     }
-
-    $scope.$watch ('comments', function () {
-        console.log('comments var changed');
-    });
 
     $scope.postComment = function (id) {
         var data = {
@@ -67,6 +60,7 @@ app.controller('PostController', function ($scope, $http) {
         })
         .then (function (response) {
             $scope.comments.push(response.data);
+            console.log($scope);
         })
         .catch (function (error) {
             alert(error);

@@ -71,5 +71,11 @@ Add the ability for user to delete his comment => done;
 Delete the comment from the front end after deleting the comment => done
 Don't allow users to post empty comments => done;
 Display the comment form only if the user is logged in => done ;
-Post a comment via angular without refreshing the page and it to the front (List) => the comment is being added to both db and list but the comments list is not updating, weird => not done yet;
-Display a confirmation modal when deleting a comment => doing;
+Post a comment via angular without refreshing the page and it to the front (List) => the comment is being added to both db and list but the comments list is not updating, weird => done;
+Display a confirmation modal when deleting a comment => done;
+
+//14/4/2017
+Working on the following and unfollowing stuff ..
+If the user is already followed display a red unfollow button.
+Display the followers list using angular => doing .
+Add a loading indicator => doing .

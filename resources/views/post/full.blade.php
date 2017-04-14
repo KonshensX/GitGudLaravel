@@ -78,46 +78,47 @@
                 </div>
             </div>
         </div>
+        @if (Auth::check()) 
+        <div class="ui form">
+            <h3>Comment:</h3>
+            {!! Form::open(['ng-submit' => 'postComment(' . $post->id . ')', 'onsubmit' => 'return false']) !!}
+                <div class="field">
+                    {!! Form::textarea('comment', null, ['rows' => 3, 'placeholder' => 'Your comment here ...', 
+                    'ng-model' => 'comment.content']) !!}
+                </div>
+                <button type="submit" class="ui primary right floated button small icon">
+                    <i class="fa-reply icon"></i>
+                     Comment
+                </button>
+            {!! Form::close() !!}
+                <!-- modal -->
+            <div class="ui basic modal">
+              <div class="ui icon header">
+                <i class="trash icon"></i>
+                Delete comment
+              </div>
+              <div class="content center">
+                <p>Please confirm, do you really want to delete this comment?</p>
+              </div>
+              <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                  <i class="remove icon"></i>
+                  No
+                </div>
+                <button class="ui green ok inverted button" ng-click="deleteComment()">
+                  <i class="checkmark icon"></i>
+                  Yes
+                </button>
+              </div>
+            </div><!-- End of modal -->
+        </div>
+        @else 
+        <div class="ui bottom segment transparent-panel">
+            You need to login to comment in this post
+        </div>
+        @endif
     </div>
-    @if (Auth::check()) 
-    <div class="ui form" ng-controller="PostController">
-        <h3>Comment:</h3>
-        {!! Form::open(['ng-submit' => 'postComment(' . $post->id . ')', 'onsubmit' => 'return false']) !!}
-            <div class="field">
-                {!! Form::textarea('comment', null, ['rows' => 3, 'placeholder' => 'Your comment here ...', 
-                'ng-model' => 'comment.content']) !!}
-            </div>
-            <button type="submit" class="ui primary right floated button small icon">
-                <i class="fa-reply icon"></i>
-                 Comment
-            </button>
-        {!! Form::close() !!}
-            <!-- modal -->
-        <div class="ui basic modal">
-          <div class="ui icon header">
-            <i class="trash icon"></i>
-            Delete comment
-          </div>
-          <div class="content center">
-            <p>Please confirm, do you really want to delete this comment?</p>
-          </div>
-          <div class="actions">
-            <div class="ui red basic cancel inverted button">
-              <i class="remove icon"></i>
-              No
-            </div>
-            <button class="ui green ok inverted button" ng-click="deleteComment()">
-              <i class="checkmark icon"></i>
-              Yes
-            </button>
-          </div>
-        </div><!-- End of modal -->
-    </div>
-    @else 
-    <div class="ui bottom segment transparent-panel">
-        You need to login to comment in this post
-    </div>
-    @endif
+    
 @endsection
 
 @section('js')
