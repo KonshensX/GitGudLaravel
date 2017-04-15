@@ -79,3 +79,7 @@ Working on the following and unfollowing stuff ..
 Display the followers list using angular => done .
 Add a loading indicator => done.
 If the user is already followed display a red unfollow button => doing.
+	Start by getting the value from the database => done.
+//15/4/2017
+	Display a button an unfollow button if already followed => done.
+	Follow and unfollow users throught angular => doing .

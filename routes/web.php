@@ -61,3 +61,10 @@ Route::group(['prefix' => 'comment'], function () {
     Route::post('remove', 'CommentController@remove')->name('comment.remove');
     Route::get('getPostComments/{id}', 'CommentController@getPostComments')->name('comment.getPostComments');
 });
+
+/**
+ * Url for testing l9lawi li mabaghcih ykhdam 
+ */
+Route::group(['prefix' => 'test'], function () {
+    Route::get('followed', 'TestController@followed');
+});

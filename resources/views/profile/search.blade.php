@@ -11,7 +11,10 @@
                             <div class="center">
                                 {!! Form::open(['url' => route('profile.follow')]) !!}
                                 {!! Form::hidden('user_id', $profile->id) !!}
-                                    <button type="submit" class="ui blue button">Follow</button>
+                                    <button type="submit" class="ui blue button" ng-class="{'green': !profile.isFollowed, 'red': profile.isFollowed}">
+                                    <span ng-if="!profile.isFollowed">Follow</span>
+                                    <span ng-if="profile.isFollowed">Unfollow</span>
+                                    </button>
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -37,6 +40,7 @@
 @endsection
 
 @section('js')
+    <script type="text/javascript" src="{{ URL::asset('client/controllers/FollowingController.js') }}"></script>
     <script>
         $(document)
                 .ready(function() {

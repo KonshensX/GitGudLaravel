@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Following;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -21,7 +23,8 @@ class User extends Authenticatable
 
     protected $appends = [
         'avatarUrl',
-        'humanDate'
+        'humanDate',
+        'isFollowed'
     ];
 
     /**
@@ -59,4 +62,21 @@ class User extends Authenticatable
     public function getHumanDateAttribute () {
         return $this->created_at->diffForHumans();
     }
+
+
+    public function getIsFollowedAttribute () {
+        // How do i know if the current logged in user is following this person or not
+        // Check if a row exists where the user_id an the followed_id 
+        // Take #1
+        $result = Following::where([
+            'user_id' => Auth::user()->id,
+            'followed_id' => 1,
+            ])->get();
+
+        if ($result->count()) {
+            return true;
+        } 
+        return false;
+    }
+
 }

@@ -117,17 +117,7 @@
     <script>
         $(document)
             .ready(function() {
-                $('.special.card .image').dimmer({
-                    on: 'hover'
-                });
-                $('.star.rating')
-                        .rating()
-                ;
-                $('.card .dimmer')
-                        .dimmer({
-                            on: 'hover'
-                        })
-                ;
+                
 
                 $('.ui.dropdown')
                         .dropdown({

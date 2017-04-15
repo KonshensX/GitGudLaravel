@@ -119,12 +119,28 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * Follow or unfollow a user 
+     */
     public function follow (Request $request) {
         $followed_id = Input::get('user_id');
         if (!$followed_id) {
             return redirect()->route('post.index');
         }
-
+        // Check if is already followed 
+        $result = Following::where([
+            'user_id' => Auth::user()->id,
+            'followed_id' => $followed_id,
+        ])->get();
+        if ($result->count()) {
+            foreach ($result as $entity) {
+                $entity->delete();
+            }
+            // I need some sort of a message right here
+            return response()->json([
+                'message' => 'unfollowed'
+            ]);
+        } 
         $followed = Following::create([
             'user_id' => Auth::user()->id,
             'followed_id' => $followed_id,
