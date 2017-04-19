@@ -21,7 +21,7 @@ app.controller ('FollowingController', function ($scope, $http, $timeout) {
                             on: 'hover'
                         })
                 ;
-	    },100);
+	    }, 100);
 	})
 	.catch (function (error) {
 		$scope.loading = false;

@@ -7,10 +7,13 @@
 }
 
 body {
+    /*
     background-size: cover;
     background: url("../img/sky-bg.jpg") fixed;
+    */
+    background-color: #F5F8FA;
 }
-
+/*
 .transparent-navbar {
     background-color: rgba(255, 255, 255, 0.7) !important;
     color: #fff !important;
@@ -27,7 +30,7 @@ body {
     color: #fff !important;
     border: transparent !important;
 }
-
+*/
 .hearted {
     color: #d62728 !important;
 }

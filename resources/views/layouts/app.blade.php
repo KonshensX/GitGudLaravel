@@ -102,12 +102,7 @@
                     @yield('content')
                 </div>
                 <div class="four wide column">
-                    <div class="ui top attached header transparent-panel">
-                        <span>Header</span>
-                    </div>
-                    <div class="ui bottom attached segment transparent-card">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam distinctio dolorem, ea eaque eius eos eveniet excepturi itaque maxime mollitia quam quisquam, rerum sapiente sequi sunt voluptate voluptates voluptatum!</p>
-                    </div>
+                    @include('partials.sidebar')
                 </div>
             </div>
         </div>

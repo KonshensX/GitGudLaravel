@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 class TestController extends Controller
 {
 	public function followed () {	
-		dd(Auth::user()->isFollowed);
+		// I dunno what am i trying to do, i just wanna get this to work
+		// I can make it better later 
+		
+		dd(Auth::user()->following()->get()[0]->followed_id);
 	} 
 }

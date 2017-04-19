@@ -68,14 +68,20 @@ class User extends Authenticatable
         // How do i know if the current logged in user is following this person or not
         // Check if a row exists where the user_id an the followed_id 
         // Take #1
-        $result = Following::where([
+        // Where am i going to get the following_id from ???
+        /*
+        $result = Following::
+        */
+        // I have a list of following id and i need some how to only get the current 
+        // Maybe i just check if the current user is in the following relationship 
+        $result = $this->following()->where([
             'user_id' => Auth::user()->id,
-            'followed_id' => 1,
-            ])->get();
-
-        if ($result->count()) {
+            'followed_id' => $this->id,
+        ])->get();
+        //dd($result);
+        if ($result) {
             return true;
-        } 
+        }
         return false;
     }
 

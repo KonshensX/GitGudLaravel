@@ -83,3 +83,8 @@ If the user is already followed display a red unfollow button => doing.
 //15/4/2017
 	Display a button an unfollow button if already followed => done.
 	Follow and unfollow users throught angular => doing .
+//18/4/2017
+Comment textarea should be empty after posting the comment ....
+
+//19/4/2017
+	Fucks sake i dunno what happened but nothing is working ... :'(

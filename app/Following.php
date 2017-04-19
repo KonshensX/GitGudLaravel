@@ -16,11 +16,12 @@ class Following extends Model
         return $this->belongsTo(User::class);
     }
 
+    /*
     public function isFollowed ($followed_id) {
     	return self::where([
             'user_id' => Auth::user()->id,
             'followed_id' => $followed_id
         ])->get();
     }
-
+    */
 }

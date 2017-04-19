@@ -36,7 +36,7 @@
                 Loading...
             </div>
         </div>
-        <div class="ui bottom segment transparent-card" ng-repeat="post in posts">
+        <div class="ui bottom segment transparent-card" ng-repeat="post in posts track by $index">
             <div class="ui items" >
                 <div class="item">
                     <div class="ui mini circular image">

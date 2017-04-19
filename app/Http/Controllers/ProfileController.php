@@ -136,6 +136,7 @@ class ProfileController extends Controller
             foreach ($result as $entity) {
                 $entity->delete();
             }
+            $result->delete();
             // I need some sort of a message right here
             return response()->json([
                 'message' => 'unfollowed'
@@ -170,7 +171,6 @@ class ProfileController extends Controller
     }
 
     public function getProfiles ($query) {
-        sleep(2);
         $user = User::where('name', $query)->first();
         $followingArray = Following::where('user_id', $user->id)->get();
 
@@ -183,7 +183,6 @@ class ProfileController extends Controller
 
 
     public function getUserPosts (Request $request) {
-        sleep(5);
         $user_id = Input::get('id');
         $posts = Post::where('user_id', $user_id)->get();
         return response()->json($posts);

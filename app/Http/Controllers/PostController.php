@@ -83,7 +83,7 @@ class PostController extends Controller
      */
     public function getPosts() {
         //simulating a delay
-        return Response::json($posts = Post::limit(30)->orderBy('created_at', 'DESC')->get());
+        return Response::json(Post::limit(30)->orderBy('created_at', 'DESC')->get());
     }
 }
 
