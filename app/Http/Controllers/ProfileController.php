@@ -120,7 +120,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Follow or unfollow a user 
+     * Follow or unfollow a user => toggle the follow
      */
     public function follow (Request $request) {
         $followed_id = Input::get('user_id');
@@ -136,7 +136,6 @@ class ProfileController extends Controller
             foreach ($result as $entity) {
                 $entity->delete();
             }
-            $result->delete();
             // I need some sort of a message right here
             return response()->json([
                 'message' => 'unfollowed'
@@ -147,7 +146,9 @@ class ProfileController extends Controller
             'followed_id' => $followed_id,
         ]);
 
-        return response()->json($followed);
+        return response()->json([
+            'message' => 'followed'
+        ]);
 
     }
 
@@ -155,25 +156,25 @@ class ProfileController extends Controller
         if (!$query) {
             return redirect()->route('post.index');
         }
-
         $user = User::where('name', $query)->first();
+        /*
         $followingArray = Following::where('user_id', $user->id)->get();
 
         foreach ($followingArray as $key => $value) {
             $profiles[] = User::find($value->followed_id);
         }
-        
+        */
 
         return view('profile.following', [
             'profile' => $user,
-            'profiles' => $profiles
+          //  'profiles' => $profiles
         ]);
     }
 
     public function getProfiles ($query) {
         $user = User::where('name', $query)->first();
         $followingArray = Following::where('user_id', $user->id)->get();
-
+        $profiles = null;
         foreach ($followingArray as $key => $value) {
             $profiles[] = User::find($value->followed_id);
         }
