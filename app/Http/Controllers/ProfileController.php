@@ -65,24 +65,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Search for users using the fullname
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function search (Request $request) {
-        $query = Input::get('search_value');
-        if (!$query) {
-            return redirect()->route('post.index');
-        }
-        $profiles = User::where('fullname', 'like', '%' . $query .'%')->get();
-        return view('profile.search', [
-                'profiles' => $profiles
-            ]
-        );
-    }
-
-    /**
      * Display the profile of the user for the given id
      *
      * @param Request $request
@@ -187,5 +169,35 @@ class ProfileController extends Controller
         $user_id = Input::get('id');
         $posts = Post::where('user_id', $user_id)->get();
         return response()->json($posts);
+    }
+
+    /**
+     * Search for users using the fullname
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search (Request $request) {
+        $query = Input::get('search_value');
+        if (!$query) {
+            return redirect()->route('post.index');
+        }
+        $profiles = User::where('fullname', 'like', '%' . $query .'%')->get();
+        return view('profile.search', [
+                'query' => $query,
+                'profiles' => $profiles
+            ]
+        );
+    }
+
+    /**
+     * This return the search result as json 
+     */
+    public function getSearchResult ($query) {
+        if (!$query) {
+            return redirect()->route('post.index');
+        }
+        $profiles = User::where('fullname', 'like', '%' . $query .'%')->get();
+        return response()->json($profiles);
     }
 }

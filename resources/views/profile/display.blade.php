@@ -3,7 +3,7 @@
 @section('content')
     <div class="ui grid">
         <div class="row">
-            <div class="ten wide column">
+            <div class="sixteen wide column">
                 <div class="ui blue secondary pointing menu">
                     <a class="active item" href="#posts" data-tab="posts">
                         <i class="fa fa-square"></i>
