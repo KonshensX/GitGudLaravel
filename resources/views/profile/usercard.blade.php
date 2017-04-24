@@ -19,5 +19,8 @@
         <a href="{{ route('profile.following', ['name' => $profile->name]) }}">
             <span>Following :<strong>{{ $profile->following()->count() }}</strong></span>
         </a>
+        <a href="{{ route('profile.followers', ['name' => $profile->name]) }}">
+            <span>Following :<strong>{{ $profile->following()->where(['followed_id' => Auth::user()->id])->get()->count() }}</strong></span>
+        </a>
     </div>
 </div>

@@ -47,6 +47,9 @@ Route::group(['prefix' => 'profile', 'using' => 'ProfileController'], function (
     Route::get('{name?}/following', 'ProfileController@following')->name('profile.following');
     Route::get('{name?}/profiles', 'ProfileController@getProfiles')->name('profile.profiles');
     Route::post('getUserPosts', 'ProfileController@getUserPosts')->name('profile.userPosts');
+
+    Route::get('{query?}/followers', 'ProfileController@followers')->name('profile.followers');
+    Route::get('{query?}/getFollowers', 'ProfileController@getFollowers')->name('profile.getFollowers');
 });
 
 /**

@@ -214,4 +214,39 @@ class ProfileController extends Controller
         
         return response()->json($profiles);
     }
+
+
+    /**
+     * Get the followers list 
+     */
+    public function followers ($query) {
+        // Take #1
+        // I need to get the followers list by getting rows from following where followed_id == myID
+        // And et the user_id 
+        return view('profile.followers', [
+            'query' => $query
+        ]);
+    }
+
+
+    /**
+     * Get the followers list 
+     */
+    public function getFollowers ($query) {
+        // Take #1
+        // I need to get the followers list by getting rows from following where followed_id == myID
+        // And et the user_id 
+        if (!Auth::check()) {
+            return redirect()->route('post.index');
+        }
+        
+        $user = User::where('name', $query)->first();
+        $followingArray = Following::where('followed_id', $user->id)->get();
+        $profiles = null;
+        foreach ($followingArray as $key => $value) {
+            $profiles[] = User::find($value->user_id);
+        }
+
+        return response()->json($profiles);
+    }
 }

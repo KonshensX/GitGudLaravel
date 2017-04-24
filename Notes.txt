@@ -103,3 +103,14 @@ Comment textarea should be empty after posting the comment ....
     Add a following section where the /////////////////////
     Enhancing the desing a little bit => Done .
     Search is not working :'( => Done.
+
+//24/4/2017
+    Add the followers list => think about it,
+    From the followings table i'm gonna need to get the rows where followed_id is mine which means someone followed me, 
+    Take #1
+    Followers list is being displayed
+
+    Make a new layout to display users profiles with their information 
+    User lazy loading the load just some posts 
+    User activity 
+    
