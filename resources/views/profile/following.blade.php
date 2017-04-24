@@ -26,7 +26,7 @@
                           <img src="@{{ profile.avatarUrl }}">
                         </div>
                         <div class="content">
-                          <a class="header">@{{ profile.fullname }}</a>
+                          <a href="{{ route('profile.display') }}/@{{ profile.name }}" class="header">@{{ profile.fullname }}</a>
                           <div class="meta">
                             <span class="date">@{{ profile.name }}</span>
                           </div>

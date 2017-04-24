@@ -1,6 +1,7 @@
 app.controller('ProfileController', function ($scope, $http) {
 
     $scope.loading = true;
+    $scope.errorLoading = false;
     $scope.posts = [];
 
     $scope.init = function (id) {
@@ -14,7 +15,7 @@ app.controller('ProfileController', function ($scope, $http) {
             $scope.loading = false;
         })
         .catch(function (err) {
-            console.log(err);
+            $scope.errorLoading = true;
         });
     }
 

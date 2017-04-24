@@ -2,6 +2,7 @@
 
 @section('content')
     <h2 class="center" data-name="{{ $query }}">Search results for {{ $query }}</h2>
+    <input type="hidden" id="query" data-name="{{ $query }}" value="{{ $query }}">
     <div class="ui four cards" ng-controller="SearchController">
         <div class="ui active dimmer" ng-show="loading">
             <div class="ui large text loader">

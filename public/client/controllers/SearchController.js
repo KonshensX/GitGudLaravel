@@ -1,10 +1,9 @@
 app.controller ('SearchController', function ($scope, $http, $timeout) {
 	$scope.loading = true;
 
-	console.log('henlo');
 	$scope.results = $http ({
 		method: 'GET',
-		url: '/Clone/public/profile/search/' + document.querySelector('.center').dataset.name
+		url: '/Clone/public/profile/search/' + document.querySelector('#query').dataset.name
 	})
 	.then (function (response) {
 		$scope.results = response.data;

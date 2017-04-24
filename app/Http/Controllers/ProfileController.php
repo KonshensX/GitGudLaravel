@@ -153,6 +153,9 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * Get the profiles that the user (query) is following as JSON. 
+     */ 
     public function getProfiles ($query) {
         $user = User::where('name', $query)->first();
         $followingArray = Following::where('user_id', $user->id)->get();
@@ -167,7 +170,7 @@ class ProfileController extends Controller
 
     public function getUserPosts (Request $request) {
         $user_id = Input::get('id');
-        $posts = Post::where('user_id', $user_id)->get();
+        $posts = Post::where('user_id', $user_id)->orderBy('created_at', 'DESC')->get();
         return response()->json($posts);
     }
 
@@ -197,7 +200,18 @@ class ProfileController extends Controller
         if (!$query) {
             return redirect()->route('post.index');
         }
+ /*
+        $user = User::where('fullname', 'like', '%' . $query .'%')->first();
+        $followingArray = Following::where('user_id', $user->id)->get();
+        $profiles = null;
+        foreach ($followingArray as $key => $value) {
+            $profiles[] = User::find($value->followed_id);
+        }
+       
+        return response()->json($profiles);
+*/
         $profiles = User::where('fullname', 'like', '%' . $query .'%')->get();
+        
         return response()->json($profiles);
     }
 }

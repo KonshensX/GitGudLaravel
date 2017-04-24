@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="ui bottom blue segment transparent-panel">
+    @if (Auth::check())
         <div class="ui form" style="overflow: hidden;">
             {!! Form::open(['url' => route('post.store'), 'files' => true]) !!}
             <div class="field">
@@ -22,6 +23,11 @@
             </div>
             {!! Form::close() !!}
         </div>
+        @else 
+        <div class="ui center">
+            <h2 class="blue">You must login to post </h2>
+        </div>
+        @endif
     </div>
 
     <div class="ui segment transparent-panel" ng-controller="HomeController">

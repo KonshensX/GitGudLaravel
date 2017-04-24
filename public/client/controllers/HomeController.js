@@ -13,7 +13,7 @@ app.controller('HomeController', function ($scope, $http, $timeout) {
     })
     .catch(function (err) {
         $scope.errorLoading = true;
-        $scope.loading = true;
+        $scope.loading = false;
     });
 
 

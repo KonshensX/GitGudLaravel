@@ -34,7 +34,7 @@
                 <div class="ui transparent icon input">
                     <i class="search icon"></i>
                     {!! Form::open(['url' => route('profile.search')]) !!}
-                        {!! Form::text('search_value', null, ['placeholder' => 'Search ....']) !!}
+                        {!! Form::text('search_value', old('search_value'), ['placeholder' => 'Search ....']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -98,12 +98,14 @@
                         @include('profile.usercard')
                     </div>
                 @endif
-                <div class="nine wide column">
+                <div class="center nine wide column">
                     @yield('content')
                 </div>
+                 @if (Auth::check())
                 <div class="four wide column">
                     @include('partials.sidebar')
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -113,11 +115,14 @@
         $(document)
             .ready(function() {
                 
-
                 $('.ui.dropdown')
                         .dropdown({
                             on: 'click'
                         })
+                ;
+
+                $('.ui.checkbox')
+                  .checkbox()
                 ;
             })
         ;
